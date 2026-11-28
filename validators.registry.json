@@ -1,0 +1,23 @@
+[
+  {
+    "name": "repository-overview",
+    "protects": "A nonblank repository overview",
+    "why": "Documents the app and how to run it",
+    "kind": "behaviour",
+    "runs": "npm run validate in Fast checks"
+  },
+  {
+    "name": "launch-catalog",
+    "protects": "The six-series slate, episode counts, two-line story beats and subtitle slots",
+    "why": "All launch stories and playback metadata must exist in the catalog",
+    "kind": "behaviour",
+    "runs": "npm test in Fast checks"
+  },
+  {
+    "name": "first-open",
+    "protects": "The first screen and its placeholder label at phone widths",
+    "why": "The capture should fail if the app opens blank or displays an unexpected screen",
+    "kind": "behaviour",
+    "runs": "npm run tap-through in App preview"
+  }
+]

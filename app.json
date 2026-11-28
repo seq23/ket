@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "KET",
+    "slug": "ket",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "plugins": [
+      "expo-router"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.ket.microdrama"
+    },
+    "android": {
+      "package": "com.ket.microdrama"
+    },
+    "web": {
+      "output": "static"
+    }
+  }
+}

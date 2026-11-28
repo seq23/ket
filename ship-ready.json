@@ -1,0 +1,8 @@
+{
+  "kind": "app",
+  "build": "npm ci --no-audit --no-fund && npm run preview:web",
+  "serve": "dist",
+  "pages": [
+    "/"
+  ]
+}

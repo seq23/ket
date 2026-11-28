@@ -1,0 +1,44 @@
+# Adapted from keepmyproof .github/workflows/app-preview.yml @ feac325c84d67b0bcf425b5a57fd6d8d636d8cb0
+name: App preview
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: app-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tap-through:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CI: '1'
+      EXPO_NO_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - run: npm run preview:web
+      - name: Record phone journeys
+        run: |
+          npm run preview:serve > "$RUNNER_TEMP/ket-preview.log" 2>&1 &
+          curl -fsS --retry-connrefused --retry 15 --retry-delay 1 http://127.0.0.1:4173/ > /dev/null || {
+            tail -n 30 "$RUNNER_TEMP/ket-preview.log"
+            exit 1
+          }
+          npm run tap-through
+      - name: Upload videos and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ket-tap-through
+          path: tap-artifacts/
+          if-no-files-found: error
