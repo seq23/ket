@@ -1,0 +1,23 @@
+{
+  "app": "KET",
+  "journeys": [
+    {
+      "name": "first-open",
+      "start": "/",
+      "steps": [
+        {
+          "see": "Lagos to Houston",
+          "id": "first-series"
+        },
+        {
+          "see": "Episode 1 of 20",
+          "id": "episode-count"
+        },
+        {
+          "see": "Placeholder — episode not filmed yet",
+          "id": "placeholder"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+dist/
+tap-artifacts/
+coverage/
+.env*
+!.env.example
+/ios/
+/android/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+*.aab
+*.apk
+.DS_Store
